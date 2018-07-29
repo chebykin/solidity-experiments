@@ -1,0 +1,22 @@
+{
+  "name": "geohash-optimization",
+  "version": "1.0.0",
+  "description": "",
+  "main": "truffle.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "truffle test --network test"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "web3": "^1.0.0-beta.35",
+    "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
+    "ganache-core": "^2.1.5",
+    "mocha": "^5.2.0"
+  },
+  "dependencies": {}
+}
