@@ -4,7 +4,7 @@
 What type of geohash to binary encoding consumes less gas and storage amount than others?
 
 ## Answer
-Test results:
+Test results for geohash `seze792kh375` (binary form `440216548224273637`):
 
 ```
 string
