@@ -29,4 +29,49 @@ contract Geohashes {
   function setInt(uint256 val) public {
     myInt = val;
   }
+
+
+  function convert() view public returns (uint256) {
+      // bytes32 input = "seze792kh375";
+    bytes memory input = "1234567c";
+    uint256 output;
+    uint8 counter;
+
+    for (uint8 i = 0; i < input.length; i++) {
+      if (input[i] == "0") {
+        output = output ^ 0;
+      } else if (input[i] == "1") {
+        output = output ^ 1;
+      } else if (input[i] == "2") {
+        output = output ^ 2;
+      } else if (input[i] == "3") {
+        output = output ^ 3;
+      } else if (input[i] == "4") {
+        output = output ^ 4;
+      } else if (input[i] == "5") {
+        output = output ^ 5;
+      } else if (input[i] == "6") {
+        output = output ^ 6;
+      } else if (input[i] == "7") {
+        output = output ^ 7;
+      } else if (input[i] == "8") {
+        output = output ^ 8;
+      } else if (input[i] == "9") {
+        output = output ^ 9;
+      } else if (input[i] == "b") {
+        output = output ^ 11;
+      } else if (input[i] == "c") {
+        output = output ^ 12;
+      }
+
+      if (i + 1 != input.length) {
+        // shift left 5 bits
+        output = output * 2 ** 5;
+      }
+
+      counter = counter + 5;
+    }
+
+    return output;
+  }
 }
