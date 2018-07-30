@@ -45,4 +45,11 @@ contract('Geohashes', ([deployer]) => {
             console.log("int\nstorage slot:", st, "\n", "gas:", tx.gasUsed, "\n\n-----------------\n");
         })
     });
+
+    describe.only('setters', () => {
+        it('should encode string geohash to numeric', async function() {
+            let tx = await this.geohashes.methods.convert().send({ gas: 500000 });
+            console.log("Gas consumed:", tx);
+        })
+    })
 });

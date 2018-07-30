@@ -6,6 +6,7 @@ contract Geohashes {
   bytes32 public myBytesInt;
   bytes32 public myBytesStr;
   uint256 public myInt;
+  uint256 public converted;
 
   function setInternal() public {
     myString = "seze792kh375";
@@ -31,9 +32,11 @@ contract Geohashes {
   }
 
 
-  function convert() view public returns (uint256) {
-      // bytes32 input = "seze792kh375";
-    bytes memory input = "1234567c";
+  /*
+   * Symbols string: '0123456789bcdefghjkmnpqrstuvwxyz'
+   */
+  function convert() public returns (uint256) {
+    bytes memory input = "seze792kh375";
     uint256 output;
     uint8 counter;
 
@@ -59,9 +62,49 @@ contract Geohashes {
       } else if (input[i] == "9") {
         output = output ^ 9;
       } else if (input[i] == "b") {
-        output = output ^ 11;
+        output = output ^ 10;
       } else if (input[i] == "c") {
+        output = output ^ 11;
+      } else if (input[i] == "d") {
         output = output ^ 12;
+      } else if (input[i] == "e") {
+        output = output ^ 13;
+      } else if (input[i] == "f") {
+        output = output ^ 14;
+      } else if (input[i] == "g") {
+        output = output ^ 15;
+      } else if (input[i] == "h") {
+        output = output ^ 16;
+      } else if (input[i] == "j") {
+        output = output ^ 17;
+      } else if (input[i] == "k") {
+        output = output ^ 18;
+      } else if (input[i] == "m") {
+        output = output ^ 19;
+      } else if (input[i] == "n") {
+        output = output ^ 20;
+      } else if (input[i] == "p") {
+        output = output ^ 21;
+      } else if (input[i] == "q") {
+        output = output ^ 22;
+      } else if (input[i] == "r") {
+        output = output ^ 23;
+      } else if (input[i] == "s") {
+        output = output ^ 24;
+      } else if (input[i] == "t") {
+        output = output ^ 25;
+      } else if (input[i] == "u") {
+        output = output ^ 26;
+      } else if (input[i] == "v") {
+        output = output ^ 27;
+      } else if (input[i] == "w") {
+        output = output ^ 28;
+      } else if (input[i] == "x") {
+        output = output ^ 29;
+      } else if (input[i] == "y") {
+        output = output ^ 30;
+      } else if (input[i] == "z") {
+        output = output ^ 31;
       }
 
       if (i + 1 != input.length) {
@@ -72,6 +115,6 @@ contract Geohashes {
       counter = counter + 5;
     }
 
-    return output;
+    converted = output;
   }
 }
