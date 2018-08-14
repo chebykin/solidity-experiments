@@ -7,6 +7,42 @@ contract Geohashes {
   bytes32 public myBytesStr;
   uint256 public myInt;
   uint256 public converted;
+  mapping(bytes2 => uint8) eMap;
+
+  constructor() public {
+    eMap["0"] = 0;
+    eMap["1"] = 1;
+    eMap["2"] = 2;
+    eMap["3"] = 3;
+    eMap["4"] = 4;
+    eMap["5"] = 5;
+    eMap["6"] = 6;
+    eMap["7"] = 7;
+    eMap["8"] = 8;
+    eMap["9"] = 9;
+    eMap["b"] = 10;
+    eMap["c"] = 11;
+    eMap["d"] = 12;
+    eMap["e"] = 13;
+    eMap["f"] = 14;
+    eMap["g"] = 15;
+    eMap["h"] = 16;
+    eMap["j"] = 17;
+    eMap["k"] = 18;
+    eMap["m"] = 19;
+    eMap["n"] = 20;
+    eMap["p"] = 21;
+    eMap["q"] = 22;
+    eMap["r"] = 23;
+    eMap["s"] = 24;
+    eMap["t"] = 25;
+    eMap["u"] = 26;
+    eMap["v"] = 27;
+    eMap["w"] = 28;
+    eMap["x"] = 29;
+    eMap["y"] = 30;
+    eMap["z"] = 31;
+  }
 
   function setInternal() public {
     myString = "seze792kh375";
@@ -31,12 +67,28 @@ contract Geohashes {
     myInt = val;
   }
 
+  function convertMap(bytes input) public returns (uint256) {
+    // bytes memory input = "seze792kh375";
+    uint256 output;
+    uint8 counter;
+
+    for (uint8 i = 0; i < input.length; i++) {
+      output = output ^ eMap[input[i]];
+      if (i + 1 != input.length) {
+        // shift left 5 bits
+        output = output * 2 ** 5;
+      }
+
+      counter = counter + 5;
+    }
+
+    converted = output;
+  }
 
   /*
    * Symbols string: '0123456789bcdefghjkmnpqrstuvwxyz'
    */
-  function convert() public returns (uint256) {
-    bytes memory input = "seze792kh375";
+  function convert(bytes input) public returns (uint256) {
     uint256 output;
     uint8 counter;
 

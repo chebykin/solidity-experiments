@@ -47,9 +47,20 @@ contract('Geohashes', ([deployer]) => {
     });
 
     describe.only('setters', () => {
-        it('should encode string geohash to numeric', async function() {
-            let tx = await this.geohashes.methods.convert().send({ gas: 500000 });
-            console.log("Gas consumed:", tx);
+        it('should encode string geohash to numeric using in-storage map', async function() {
+            const val = web3.utils.asciiToHex("seze792kh375");
+            let tx = await this.geohashes.methods.convertMap(val).send({ gas: 500000 });
+            console.log("Gas consumed storage:", tx.gasUsed);
+            let res = await this.geohashes.methods.converted().call();
+            assert.equal(res.toString(10), '880433086698360037');
+        })
+
+        it('should encode string geohash to numeric using memory-only conversion', async function() {
+            const val = web3.utils.asciiToHex("seze792kh375");
+            let tx = await this.geohashes.methods.convert(val).send({ gas: 500000 });
+            console.log("Gas consumed memory:", tx.gasUsed);
+            let res = await this.geohashes.methods.converted().call();
+            assert.equal(res.toString(10), '880433086698360037');
         })
     })
 });
